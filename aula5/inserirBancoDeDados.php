@@ -2,14 +2,18 @@
 ini_set('error_reporting', E_ALL); // mesmo resultado de: error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$id = (int)$_GET['id'];
+// print_r($_GET);
+
+//Array ( [nome] => kiwi [precoEmReais] => 10 )
+
+
 $nome = $_GET['nome'];
 $precoEmReais = $_GET['precoEmReais'];
 
 // echo "chegou";
 
 
-$host = '127.0.0.1:3308';
+$host = '127.0.0.1';
 $user = 'root';
 $password = '';
 $database = 'fullStack';
@@ -30,16 +34,18 @@ if ($conn->connect_error) {
 
 // Fechar conexão
 
+
+// errada! $sql = "INSERT INTO caixaRegistradora('nome', 'valor') VALUES('$nome', $precoEmReais);";
 $sql = "INSERT INTO caixaRegistradora(nome, preco) VALUES('$nome', $precoEmReais)";
 
-$sql = "UPDATE caixaRegistradora SET nome = '$nome', preco = $precoEmReais where id = $id";
+
 // echo $sql;
 
 if($conn->query($sql) === TRUE){
-    echo $nome . " foi atualizado com sucesso";
+    echo $nome . " foi inserido com sucesso";
 }
 else{
-    echo $nome . " nao foi atualizado com sucesso";
+    echo $nome . " nao foi inserido com sucesso";
 
 }
 

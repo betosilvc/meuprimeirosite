@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 
 $id = $_GET['id'];
 
-$host = '127.0.0.1:3308'; // ou localhost
+$host = '127.0.0.1'; // ou localhost
 $user = 'root';
 $password = '';
 $database = 'fullStack';
@@ -28,11 +28,11 @@ if ($row['total'] == 0) {
     echo $id . " nao existe!";
 
 } else {
-    $sql = "DELETE FROM caixaRegistradora where id = $id";
+    $sql = "UPDATE caixaRegistradora set deletado = 1 where id = $id";
 
 
     if ($conn->query($sql) === TRUE) {
-        echo $id . " foi deletado com sucesso";
+        echo $id . " foi deletado (de mentirinha) com sucesso";
     } else {
         echo $id . " nao foi deletado com sucesso";
 

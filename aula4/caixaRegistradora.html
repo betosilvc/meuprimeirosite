@@ -1,40 +1,3 @@
-<?php
-
-ini_set('error_reporting', E_ALL); // mesmo resultado de: error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-$host = '127.0.0.1:3308';
-$user = 'root';
-$password = '';
-$database = 'fullStack';
-
-$id = $_GET['id'];
-
-// Cria uma conexão
-$conn = new mysqli($host, $user, $password, $database);
-
-// Verifica a conexão
-if ($conn->connect_error) {
-    die("Conexão falhou: " . $conn->connect_error);
-}
-
-// Fechar conexão
-
-
-$sql = "SELECT * FROM `caixaRegistradora` where id = $id";
-
-// $sqlInsert = "insert into caixaRegistradora('nome', 'valor') VALUES('Caio', 1000)";
-
-$resultado = $conn->query($sql);
-
-if ($resultado->num_rows > 0) {
-    $row = $resultado->fetch_assoc(); // Obtem apenas uma linha
-}
-$conn->close();
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -120,21 +83,18 @@ $conn->close();
 
 <body>
     <main>
-    <label for="nome">Editando o produto: #<?php echo $row['id']?></label>
-
-        <form method="GET" action="atualizarBancoDeDados.php">
-            <input type="hidden" name="id" value="<?php echo $row['id']?>">
+        <form id="contactForm">
             <label for="nome">Nome do produto:</label>
-            <input type="text" id="nome" name="nome" value="<?php echo $row['nome']?>">
+            <input type="text" id="nome" name="nome">
 
             <label for="precoEmReais">Preço em reais:</label>
-            <input type="number" id="precoEmReais" name="precoEmReais" value="<?php echo $row['preco']?>">
+            <input type="number" id="precoEmReais" name="precoEmReais">
 
             <div class="resultado" id="mensagemDeResultado"></div>
             <div class="erro" id="mensagemDeErro"></div>
 
 
-            <input type="submit" value="Atualizar">
+            <input type="button" onclick="calcular()" value="Calcular">
         </form>
 
     </main>
@@ -142,3 +102,51 @@ $conn->close();
 </body>
 
 </html>
+
+<script>
+
+calcular = function(){
+    // Se o produto custar menos de 100 reais, desconto de 20%
+    // Se custar mais de 100 até 500: 10%
+    // Acima de 500 5%
+
+
+    const nome = document.getElementById('nome').value;
+    const precoEmReais = parseFloat(document.getElementById('precoEmReais').value);
+
+    let resultado = '';
+    let desconto = 0;
+    let porcentagem = 1;
+    let erro = '';
+
+    if(precoEmReais < 100){
+        porcentagem = 0.2
+    }
+    else if(precoEmReais >= 100 && precoEmReais <= 500){
+        porcentagem = 0.1
+    }
+    else{
+        porcentagem = 0.05
+    }
+
+    desconto = porcentagem * precoEmReais;
+
+
+    let precoFinal = precoEmReais - desconto;
+
+    resultado = 'O produto ' + nome + ' custa R$' + precoEmReais + ' com desconto de ' + porcentagem * 100 + '% (R$' + desconto + ') ele sairá por: R$' + precoFinal;
+
+   
+    
+
+    let mensagemDeResultado = document.getElementById('mensagemDeResultado').textContent = resultado;
+    let mensagemDeErro = document.getElementById('mensagemDeErro').textContent = erro;
+
+
+}
+
+
+
+
+   
+</script>
