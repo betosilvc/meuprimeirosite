@@ -6,7 +6,7 @@ ini_set('display_errors', 1);
 $email = $_GET['email'];
 $senha = $_GET['senha'];
 
-$host = '127.0.0.1';
+$host = '127.0.0.1:3308';
 $user = 'root';
 $password = '';
 $database = 'fullstack';
