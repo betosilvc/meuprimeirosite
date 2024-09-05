@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 
 $id = $_GET['id'];
 
-$host = '127.0.0.1:3308'; // ou localhost
+$host = '127.0.0.1'; // ou localhost
 $user = 'root';
 $password = '';
 $database = 'fullStack';

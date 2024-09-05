@@ -13,7 +13,7 @@ $precoEmReais = $_GET['precoEmReais'];
 // echo "chegou";
 
 
-$host = '127.0.0.1:3308';
+$host = '127.0.0.1';
 $user = 'root';
 $password = '';
 $database = 'fullStack';
