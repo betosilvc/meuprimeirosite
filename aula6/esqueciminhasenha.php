@@ -79,7 +79,7 @@
         <input type="email" name="email" placeholder="Email" required>
         <input type="text" name="palavraDeSeguranca" placeholder="Palavra de Segurança" required>
         <button type="submit">Recuperar Senha</button>
-        <a href="#" class="link">Voltar ao Login</a>
+        <a href="login.php" class="link">Voltar ao Login</a>
     </form>
 </div>
 

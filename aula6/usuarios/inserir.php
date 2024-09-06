@@ -6,7 +6,7 @@ $nome = $_GET['nome'];
 $email = $_GET['email'];
 $senha = $_GET['senha'];
 
-$host = '127.0.0.1:3308';
+$host = '127.0.0.1';
 $user = 'root';
 $password = '';
 $database = 'fullstack';
