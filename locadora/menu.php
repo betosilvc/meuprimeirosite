@@ -1,5 +1,5 @@
 <?php
-    $host = '/meprimeirosite/locadora';
+    $host = '/cursofullstack/locadora';
 ?>
 
 <div class="sidebar">
