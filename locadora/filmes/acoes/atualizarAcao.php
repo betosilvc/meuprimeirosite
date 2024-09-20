@@ -23,7 +23,7 @@ echo $sql;
 
 if ($conn->query($sql) === TRUE) {
     $conn->close();
-    header('Location:../criar.php?msg=filme '. $titulo .' cadastrado :)');
+    header('Location:../criar.php?msg=filme '. $titulo .' editado com sucesso :)');
 } else {
     echo $titulo . "nao foi inserido com sucesso :( ";
 
